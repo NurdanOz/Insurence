@@ -73,12 +73,12 @@ Instagram API entegrasyonu, çok dilli destek ve dinamik içerik yönetimi ile z
 | 📸 **Instagram Scraper API** | Takipçi sayısı çekme (RapidAPI) |
 | 🌐 **i18n Resources** | Dil desteği |
 
-API Adı	İkon	Kullanım Alanı	Amaç ve Faydası
-Google Gemini API	🤖	SSS Yönetimi (Admin Paneli)	Sigorta konularında çok dilli (TR/EN) soru ve cevap setlerini otomatik üretir ve içeriği hızlandırır.
-Hugging Face API	🎨	Hizmetler Modülü (Admin Paneli)	Metin girdisine dayalı olarak hizmetler için benzersiz, yapay zeka üretimi görseller sağlar.
-Instagram Scraper API	📸	Ön Yüz (Public Site) - Üst Menü	Sosyal medya hesaplarının gerçek zamanlı takipçi sayılarını çekerek dinamik veri gösterimi yapar.
-i18n Resources (Veritabanı)	🌐	Genel Çoklu Dil Desteği	Sayfa içeriğinin (TR/EN) dil ayarlarını ve yönetimini sağlar.
-
+API Entegrasyonları
+API	Kullanım Alanı
+📸 Instagram Scraper API	Takipçi sayısı çekme (RapidAPI)
+🌐 i18n Resources	Dil desteği
+❓ Gemini API	SSS (Sık Sorulan Sorular) için soru/cevap çekme
+🖼 Hugging Face API	Hizmetler için görsel oluşturma
 
 
 ## 🚀 Kurulum
