@@ -129,4 +129,36 @@ F5 veya Ctrl+F5
 ```
 
 
+<img width="1920" height="1004" alt="Sigorta1" src="https://github.com/user-attachments/assets/4b9a1aeb-7268-40d6-85b7-3bb5f9a2a42f" />
+<img width="1920" height="1080" alt="Sigorta2" src="https://github.com/user-attachments/assets/0e993a09-4347-4731-8138-b9381f04589e" />
+<img width="1920" height="1080" alt="Sigorta3" src="https://github.com/user-attachments/assets/e8f25518-afe9-4791-8ce5-283ea8cbfab3" />
+<img width="1920" height="1080" alt="Sigorta4" src="https://github.com/user-attachments/assets/f25b0ae3-91f5-45eb-8435-bb1a30b37e8e" />
+<img width="1920" height="1080" alt="Sigorta5" src="https://github.com/user-attachments/assets/7de79b01-f15e-47b2-8f15-5a88309b0edb" />
+<img width="1920" height="1080" alt="Sigorta6" src="https://github.com/user-attachments/assets/531a5ae7-271a-4227-a99b-f287965d4da8" />
+<img width="1920" height="1080" alt="Sigorta7" src="https://github.com/user-attachments/assets/b08748f6-1ae9-4784-aaac-1590a9dfc160" />
+<img width="1920" height="1080" alt="Sigorta8" src="https://github.com/user-attachments/assets/6a7dfafa-eb58-4947-92bc-9906ac1ac889" />
+<img width="1920" height="1000" alt="İngilizce1" src="https://github.com/user-attachments/assets/9b7f96bd-1271-4b92-ad1f-471c9e7dee02" />
+<img width="1920" height="1080" alt="İngilizce2" src="https://github.com/user-attachments/assets/8f28055e-99b4-46bc-9e28-5b9fd6936970" />
+<img width="1920" height="1007" alt="HİZMETLERAİ1" src="https://github.com/user-attachments/assets/2dfa5df4-10d0-4142-96b9-829159c2e22f" />
+<img width="1920" height="1017" alt="HİZMETLERAİ2" src="https://github.com/user-attachments/assets/24f5a09f-6994-4a81-81a0-416cb796424a" />
+<img width="1920" height="1004" alt="HİZMETLERAİ3" src="https://github.com/user-attachments/assets/a4a9e30b-2be0-41fb-9981-0103ef669592" />
+<img width="1920" height="1014" alt="SSSAİ1" src="https://github.com/user-attachments/assets/b2aaeaf0-bdd0-4733-bd99-11db36cabb65" />
+<img width="1920" height="1017" alt="SSSAİ2" src="https://github.com/user-attachments/assets/5ec8742a-68c5-45b8-aa9e-77ce2e2cffbb" />
+<img width="1920" height="1011" alt="SSSAİ3" src="https://github.com/user-attachments/assets/421783f3-74ca-4b14-ade6-244e92687430" />
+<img width="1920" height="1004" alt="SSSAİ4" src="https://github.com/user-attachments/assets/2bccda13-0882-497a-901e-9f369bae30ae" />
+<img width="1920" height="1080" alt="Dashboard" src="https://github.com/user-attachments/assets/d076fa1c-fd66-44b7-b9d6-5c53c0c9d3dd" />
+<img width="1920" height="1080" alt="Ekip1" src="https://github.com/user-attachments/assets/a997a66d-9c3e-4d8b-a6e4-c023cbf13469" />
+<img width="1920" height="1080" alt="Ekip2" src="https://github.com/user-attachments/assets/891a6e91-4452-42c9-acdc-6f295614a215" />
+<img width="1920" height="1080" alt="MüşteriY1" src="https://github.com/user-attachments/assets/3a54a717-474a-476b-9759-f4d0d8223022" />
+<img width="1920" height="1080" alt="MüşteriY2" src="https://github.com/user-attachments/assets/eb8eb666-e92a-4c27-9fb0-ff0bbd7e371d" />
+
+
+
+
+
+ 
+
+
+
+
 
