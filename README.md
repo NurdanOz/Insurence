@@ -11,20 +11,17 @@ Instagram API entegrasyonu, çok dilli destek ve dinamik içerik yönetimi ile z
 🤖 Google Gemini  | Sıkça Sorulan Sorular (SSS) için otomatik Soru-Cevap Seti Üretimi  |	Yönetim Paneli - SSS Yönetimi Modülü |
 
  -Tek bir istek ile sigorta konularına özel, Türkçe ve İngilizce dillerinde içerik oluşturulur.
-
  -Yöneticilerin zaman kaybetmeden, yapay zeka desteğiyle çok dilli SSS içeriklerini anında üretmesini ve veritabanına kaydetmesini sağlar.
 
 🎨 Hugging Face API | Metin girdisine dayalı Görüntü (Fotoğraf) Üretimi | Yönetim Paneli - Hizmetler Modülü | 
 
--Hizmet açıklaması (prompt) API'ye gönderilerek, o hizmetin içeriğine özel ve benzersiz bir görsel dinamik olarak üretilir.
-
-- Projenin stok görsel bağımlılığını ortadan kaldırır; her bir hizmet için yüksek kaliteli, bağlama uygun görseller sunarak görsel zenginliği artırır.
+ -Hizmet açıklaması (prompt) API'ye gönderilerek, o hizmetin içeriğine özel ve benzersiz bir görsel dinamik olarak üretilir.
+ -Projenin stok görsel bağımlılığını ortadan kaldırır; her bir hizmet için yüksek kaliteli, bağlama uygun görseller sunarak görsel zenginliği artırır.
 
 📈 RapidAPI | 	Sosyal Medya (Instagram) Gerçek Zamanlı Takipçi Sayısı Çekimi | Ön Yüz (Public Site) - Üst Menü/Header |
 
-- DefaultController içindeki asenkron (async Task) metot ile harici API'ye istek atılarak güncel takipçi sayısı çekilir.
-
-- Sitenin sadece statik değil, aynı zamanda dinamik ve güncel verileri de gösterebildiğini kanıtlar; sosyal medya varlığı hakkında şeffaflık sunar.
+ - DefaultController içindeki asenkron (async Task) metot ile harici API'ye istek atılarak güncel takipçi sayısı çekilir.
+ - Sitenin sadece statik değil, aynı zamanda dinamik ve güncel verileri de gösterebildiğini kanıtlar; sosyal medya varlığı hakkında şeffaflık sunar.
   
 
 🌍 Çoklu Dil Desteği (i18n)
