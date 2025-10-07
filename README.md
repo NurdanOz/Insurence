@@ -67,18 +67,15 @@ Instagram API entegrasyonu, çok dilli destek ve dinamik içerik yönetimi ile z
 | 🖼️ **Font Awesome** | Icon kütüphanesi |
 | 📱 **Responsive Design** | Mobil uyumlu tasarım |
 
-### API Entegrasyonları
+
+## API Entegrasyonları
 | API | Kullanım Alanı |
-|-----|---------------|
+|-----|----------------|
 | 📸 **Instagram Scraper API** | Takipçi sayısı çekme (RapidAPI) |
 | 🌐 **i18n Resources** | Dil desteği |
+| ❓ **Gemini API** | SSS (Sık Sorulan Sorular) için soru/cevap çekme |
+| 🖼 **Hugging Face API** | Hizmetler için görsel oluşturma |
 
-API Entegrasyonları
-API	Kullanım Alanı
-📸 Instagram Scraper API	Takipçi sayısı çekme (RapidAPI)
-🌐 i18n Resources	Dil desteği
-❓ Gemini API	SSS (Sık Sorulan Sorular) için soru/cevap çekme
-🖼 Hugging Face API	Hizmetler için görsel oluşturma
 
 
 ## 🚀 Kurulum
