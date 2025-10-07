@@ -136,7 +136,7 @@ F5 veya Ctrl+F5
 <img width="1920" height="1017" alt="Sigorta4" src="https://github.com/user-attachments/assets/79c81016-c0e0-4d2b-b74a-7c2ae5184657" />
 <img width="1920" height="1035" alt="Sigorta5" src="https://github.com/user-attachments/assets/fe80c41c-f76e-4747-ae87-c614578d385d" />
 <img width="1920" height="1021" alt="Sigorta6" src="https://github.com/user-attachments/assets/75efb54b-e099-45d2-8ec0-381ac7d85ba4" />
-<img width="1920" height="1021" alt="Sigorta7" src="https://github.com/user-attachments/assets/0004945e-09c0-4937-8d25-c489e0ed3bc2" />
+<img width="1920" height="995" alt="Sigorta7" src="https://github.com/user-attachments/assets/5ab8e284-7e89-42e6-a9fe-e0a33adb5408" />
 <img width="1920" height="1011" alt="Sigorta8" src="https://github.com/user-attachments/assets/e6ef5531-fd97-4cb5-adc4-d64c2403da8d" />
 <img width="1920" height="1000" alt="İngilizce1" src="https://github.com/user-attachments/assets/b0926b24-32e7-4b67-b8db-7d838c3b5733" />
 <img width="1920" height="1021" alt="İngilizce2" src="https://github.com/user-attachments/assets/83709299-19ab-40f0-8812-22b96a538c63" />
