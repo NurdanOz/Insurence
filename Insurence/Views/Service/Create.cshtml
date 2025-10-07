@@ -1,0 +1,94 @@
+﻿@model Insurence.Models.DataModels.TblService
+@{
+    ViewBag.Title = "Yeni Hizmet Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Yeni Hizmet Ekle</h4>
+                <p class="card-description">Hizmet bilgilerini ekleyin</p>
+
+                @using (Html.BeginForm("Create", "Service", FormMethod.Post, new { @class = "forms-sample" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Title, "Başlık (Türkçe)", new { @class = "form-label" })
+                                @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Başlık giriniz" })
+                                @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.TitleEN, "Başlık (İngilizce)", new { @class = "form-label" })
+                                @Html.TextBoxFor(m => m.TitleEN, new { @class = "form-control", placeholder = "Title" })
+                                @Html.ValidationMessageFor(m => m.TitleEN, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Description, "Açıklama (Türkçe)", new { @class = "form-label" })
+                                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "4", placeholder = "Açıklama giriniz" })
+                                @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.DescriptionEN, "Açıklama (İngilizce)", new { @class = "form-label" })
+                                @Html.TextAreaFor(m => m.DescriptionEN, new { @class = "form-control", rows = "4", placeholder = "Description" })
+                                @Html.ValidationMessageFor(m => m.DescriptionEN, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Icon, "İkon Class", new { @class = "form-label" })
+                                @Html.TextBoxFor(m => m.Icon, new { @class = "form-control", placeholder = "fa-users" })
+                                @Html.ValidationMessageFor(m => m.Icon, "", new { @class = "text-danger" })
+                                <small class="form-text text-muted">Örnek: fa-users, fa-hospital, fa-car, fa-home</small>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ImageUrl, "Görsel URL", new { @class = "form-label" })
+                                @Html.TextBoxFor(m => m.ImageUrl, new { @class = "form-control", placeholder = "https://example.com/image.png" })
+                                @Html.ValidationMessageFor(m => m.ImageUrl, "", new { @class = "text-danger" })
+                                <small class="form-text text-muted">
+                                    <a href="@Url.Action("AIImageGenerator", "Service")" target="_blank" class="text-primary">
+                                        <i class="mdi mdi-robot"></i> AI ile görsel oluştur
+                                    </a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-gradient-primary me-2">
+                            <i class="mdi mdi-content-save"></i> Kaydet
+                        </button>
+                        <a href="@Url.Action("Index", "Service")" class="btn btn-light">
+                            <i class="mdi mdi-arrow-left"></i> İptal
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

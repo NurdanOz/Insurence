@@ -1,0 +1,42 @@
+﻿@model List<Insurence.Models.DataModels.TblService>
+@{
+    var isEnglish = Session["Language"] != null && Session["Language"].ToString() == "en";
+}
+<div class="container-fluid service py-5">
+    <div class="container py-5">
+        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+            <h4 class="text-primary">@(isEnglish ? "Our Services" : "Hizmetlerimiz")</h4>
+            <h1 class="display-4 mb-4">@(isEnglish ? "We Provide Best Services" : "En İyi Hizmetleri Sunuyoruz")</h1>
+            <p class="mb-0">
+                @(isEnglish ? "We work to provide our customers with the highest quality insurance services. We are with you with our expert team in the fields of life, health, vehicle and home insurance." : "Müşterilerimize en kaliteli sigorta hizmetlerini sunmak için çalışıyoruz. Hayat, sağlık, araç ve ev sigortası alanlarında uzman ekibimizle yanınızdayız.")
+            </p>
+        </div>
+        <div class="row g-4 justify-content-center">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="service-item">
+                        <div class="service-img">
+                           <img src="@(item.ImageUrl.StartsWith("http") ? item.ImageUrl : Url.Content("~/" + item.ImageUrl))"
+                                class="img-fluid rounded-top w-100"
+                                alt="@(isEnglish ? item.TitleEN : item.Title)">
+                            <div class="service-icon p-3">
+                                <i class="fa @item.Icon fa-2x"></i>
+                            </div>
+                        </div>
+                        <div class="service-content p-4">
+                            <div class="service-content-inner">
+                                <a href="#" class="d-inline-block h4 mb-4">@(isEnglish ? item.TitleEN : item.Title)</a>
+                                <p class="mb-4">@(isEnglish ? item.DescriptionEN : item.Description)</p>
+                                <a class="btn btn-primary rounded-pill py-2 px-4" href="#">@(isEnglish ? "Read More" : "Devamını Oku")</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.2s">
+                <a class="btn btn-primary rounded-pill py-3 px-5" href="#">@(isEnglish ? "More Services" : "Tüm Hizmetler")</a>
+            </div>
+        </div>
+    </div>
+</div>

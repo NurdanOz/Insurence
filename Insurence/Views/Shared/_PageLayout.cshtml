@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+@Html.Partial("_HeadPartial")
+<body>
+    @RenderBody()
+    <!-- Spinner Start -->
+    @Html.Partial("_SpinnerPartial")
+    <!-- Topbar Start -->
+    @Html.Partial("_TopBarPartial")
+    <!-- Navbar & Hero Start -->
+    @Html.Partial("_NavbarPartial")
+    <!-- Carousel Start -->
+    @Html.Partial("_CarouselPartial")
+    <!-- Feature Start -->
+    @Html.Action("_FeaturePartial", "Default")
+    <!-- About Start -->
+    @Html.Action("_AboutPartial", "Default")
+    <!-- Service Start -->
+    @Html.Action("_ServicePartial", "Default")
+    <!-- FAQs Start -->
+    @Html.Action("_SSSPartial", "Default")
+    <!-- Employe Start -->
+    @Html.Action("_EmployePartial", "Default")
+    <!-- Testimonial Start -->
+    @Html.Action("_TestimonialPartial", "Default")
+    <!-- Footer Start -->
+    @Html.Partial("_ContactFooterPartial")
+    <!-- Copyright Start -->
+    @Html.Partial("_ScriptPartial")
+</body>
+</html>
+

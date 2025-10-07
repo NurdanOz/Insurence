@@ -1,0 +1,37 @@
+﻿@model List<Insurence.Models.DataModels.TblFeature>
+@{
+    var isEnglish = Session["Language"] != null && Session["Language"].ToString() == "en";
+}
+<div class="container-fluid feature bg-light py-5">
+    <div class="container py-5">
+        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+            <h1 class="display-4 mb-4">
+                @(isEnglish ? "Insurance Provides You a Better Future" : "Sigorta Size Daha İyi Bir Gelecek Sağlar")
+            </h1>
+            <p class="mb-0">
+                @(isEnglish
+                    ? "Insurance is the smartest way to secure your future. With us, be prepared for life's uncertainties. We are always with you with fast, reliable and affordable insurance solutions."
+                    : "Sigorta, geleceğinizi güvence altına almanın en akıllıca yoludur. Bizimle birlikte, hayatın getirdiği belirsizliklere karşı hazırlıklı olun. Hızlı, güvenilir ve uygun fiyatlı sigorta çözümleri ile her zaman yanınızdayız.")
+            </p>
+        </div>
+        <div class="row g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="feature-item p-4 pt-0">
+                        <div class="feature-icon p-4 mb-4">
+                            <i class="@item.Icon"></i>
+                        </div>
+                        <h4 class="mb-4">@(isEnglish ? item.TitleEN : item.Title)</h4>
+                        <p class="mb-4">
+                            @(isEnglish ? item.DescriptionEN : item.Description)
+                        </p>
+                        <a class="btn btn-primary rounded-pill py-2 px-4" href="#">
+                            @(isEnglish ? "More Information..." : "Daha Fazla Bilgi...")
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

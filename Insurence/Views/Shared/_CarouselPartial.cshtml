@@ -1,0 +1,93 @@
+﻿<div class="header-carousel owl-carousel">
+    <div class="header-carousel-item bg-primary">
+        <div class="carousel-caption">
+            <div class="container">
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-7 animated fadeInLeft">
+                        <div class="text-sm-center text-md-start">
+                            <h4 class="text-white text-uppercase fw-bold mb-4" data-translate="welcome">HOŞGELDİNİZ</h4>
+                            <h1 class="display-1 text-white mb-4" data-translate="heroTitle">Hayat Sigortası Sizi Mutlu Eder</h1>
+                            <p class="mb-5 fs-5" data-translate="heroText">
+                                Hayat beklenmedik sürprizlerle dolu. Biz, sizi ve sevdiklerinizi bu sürprizlere karşı güvence altına alıyoruz. Geniş sigorta çözümlerimizle, her an yanınızdayız.
+                                İhtiyaçlarınıza özel çözümlerimizle, geleceğe güvenle bakmanız için buradayız.Daha fazlasını keşfedin ve bugün teklif alın...
+                            </p>
+                            <div class="d-flex justify-content-center justify-content-md-start flex-shrink-0 mb-4">
+                                <a class="btn btn-light rounded-pill py-3 px-4 px-md-5 me-2" href="#"><i class="fas fa-play-circle me-2"></i><span data-translate="watchVideo">Videoyu İzle</span></a>
+                                <a class="btn btn-dark rounded-pill py-3 px-4 px-md-5 ms-2" href="#" data-translate="moreInfo">Daha fazla bilgi...</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 animated fadeInRight">
+                        <div class="calrousel-img" style="object-fit: cover;">
+                            <img src="~/LifeSure-1.0.0/img/carousel-2.png" class="img-fluid w-100" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-carousel-item bg-primary">
+        <div class="carousel-caption">
+            <div class="container">
+                <div class="row gy-4 gy-lg-0 gx-0 gx-lg-5 align-items-center">
+                    <div class="col-lg-5 animated fadeInLeft">
+                        <div class="calrousel-img">
+                            <img src="~/LifeSure-1.0.0/img/carousel-2.png" class="img-fluid w-100" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-7 animated fadeInRight">
+                        <div class="text-sm-center text-md-end">
+                            <h4 class="text-white text-uppercase fw-bold mb-4" data-translate="welcome">HOŞGELDİNİZ</h4>
+                            <h1 class="display-1 text-white mb-4" data-translate="heroTitle">Hayat Sigortası Sizi Mutlu Eder</h1>
+                            <p class="mb-5 fs-5" data-translate="heroText">
+                                Hayat beklenmedik sürprizlerle dolu. Biz, sizi ve sevdiklerinizi bu sürprizlere karşı güvence altına alıyoruz. Geniş sigorta çözümlerimizle, her an yanınızdayız.
+                                İhtiyaçlarınıza özel çözümlerimizle, geleceğe güvenle bakmanız için buradayız.Daha fazlasını keşfedin ve bugün teklif alın...
+                            </p>
+                            <div class="d-flex justify-content-center justify-content-md-end flex-shrink-0 mb-4">
+                                <a class="btn btn-light rounded-pill py-3 px-4 px-md-5 me-2" href="#"><i class="fas fa-play-circle me-2"></i><span data-translate="watchVideo">Videoyu İzle</span></a>
+                                <a class="btn btn-dark rounded-pill py-3 px-4 px-md-5 ms-2" href="#" data-translate="moreInfo">Daha fazla bilgi...</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const heroTranslations = {
+    tr: {
+        welcome: "HOŞGELDİNİZ",
+        heroTitle: "Hayat Sigortası Sizi Mutlu Eder",
+        heroText: "Hayat beklenmedik sürprizlerle dolu. Biz, sizi ve sevdiklerinizi bu sürprizlere karşı güvence altına alıyoruz. Geniş sigorta çözümlerimizle, her an yanınızdayız. İhtiyaçlarınıza özel çözümlerimizle, geleceğe güvenle bakmanız için buradayız.Daha fazlasını keşfedin ve bugün teklif alın...",
+        watchVideo: "Videoyu İzle",
+        moreInfo: "Daha fazla bilgi..."
+    },
+    en: {
+        welcome: "WELCOME",
+        heroTitle: "Life Insurance Makes You Happy",
+        heroText: "Life is full of unexpected surprises. We secure you and your loved ones against these surprises. We are always by your side with our comprehensive insurance solutions. We are here with our customized solutions for you to look to the future with confidence. Discover more and get a quote today...",
+        watchVideo: "Watch Video",
+        moreInfo: "More information..."
+    }
+};
+
+function updateHeroContent(lang) {
+    document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (heroTranslations[lang] && heroTranslations[lang][key]) {
+            element.textContent = heroTranslations[lang][key];
+        }
+    });
+}
+
+// Sayfa yüklendiğinde dili ayarla
+document.addEventListener('DOMContentLoaded', function() {
+    const currentLang = localStorage.getItem('selectedLanguage') || 'tr';
+    updateHeroContent(currentLang);
+});
+
+// Dil değiştiğinde güncelle (global fonksiyon)
+window.updateHeroContent = updateHeroContent;
+</script>

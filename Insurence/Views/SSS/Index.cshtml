@@ -1,0 +1,275 @@
+﻿@model List<Insurence.Models.DataModels.TblSSS>
+@{
+    ViewBag.Title = "SSS Yönetimi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .compact-table {
+        font-size: 0.8rem;
+    }
+
+        .compact-table th,
+        .compact-table td {
+            padding: 0.4rem !important;
+            vertical-align: middle;
+        }
+
+        .compact-table th {
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+    .card-body-compact {
+        padding: 1rem !important;
+    }
+
+    .compact-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .btn-compact {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .id-col {
+        width: 40px;
+    }
+
+    .action-col {
+        width: 140px;
+    }
+
+    #aiResultDiv table td {
+        white-space: normal !important;
+        vertical-align: top;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+
+    
+    #aiResultDiv table small {
+        display: block;
+        margin-top: 5px;
+    }
+</style>
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body card-body-compact">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h4 class="card-title compact-title mb-0">Sıkça Sorulan Sorular</h4>
+                    <div>
+
+                        <button id="aiGenerateBtn" class="btn btn-gradient-info btn-compact mr-2">
+                            <i class="mdi mdi-robot"></i> AI ile Oluştur
+                        </button>
+
+                        <a href="@Url.Action("Create", "SSS")" class="btn btn-gradient-primary btn-compact">
+                            <i class="mdi mdi-plus"></i> Yeni Ekle
+                        </a>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover compact-table">
+                        <thead>
+                            <tr>
+                                <th class="id-col">#</th>
+                                <th>Soru (TR)</th>
+                                <th>Soru (EN)</th>
+                                <th class="action-col">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Count > 0)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.SssId</td>
+                                        <td>@(item.soru?.Length > 50 ? item.soru.Substring(0, 50) + "..." : item.soru)</td>
+                                        <td>@(item.soruEN?.Length > 50 ? item.soruEN.Substring(0, 50) + "..." : item.soruEN)</td>
+                                        <td>
+                                            <a href="@Url.Action("Edit", "SSS", new { id = item.SssId })" class="btn btn-gradient-success btn-sm btn-icon-text">
+                                                <i class="mdi mdi-pencil btn-icon-prepend"></i> Düzenle
+                                            </a>
+                                            <a href="@Url.Action("Delete", "SSS", new { id = item.SssId })"
+                                               class="btn btn-gradient-danger btn-sm btn-icon-text"
+                                               onclick="return confirm('Silmek istediğinize emin misiniz?')">
+                                                <i class="mdi mdi-delete btn-icon-prepend"></i> Sil
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4" class="text-center">Henüz kayıt bulunmamaktadır.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="aiModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">AI ile Oluşturulan Sorular</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="aiLoadingDiv" class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only">Yükleniyor...</span>
+                    </div>
+                    <p class="mt-2">AI sorular oluşturuyor...</p>
+                </div>
+                <div id="aiResultDiv" style="display:none;">
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;">Seç</th>
+                                <th style="width: 45%;">Soru (TR)</th>
+                                <th style="width: 45%;">Soru (EN)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="aiResultTable"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">İptal</button>
+                <button type="button" class="btn btn-primary" id="saveSelectedBtn" style="display:none;">Seçilenleri Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#aiGenerateBtn').click(function () {
+                console.log('AI Generate butonuna tıklandı');
+                $('#aiModal').modal('show');
+                $('#aiLoadingDiv').show();
+                $('#aiResultDiv').hide();
+                $('#saveSelectedBtn').hide();
+
+                $.ajax({
+                    url: '@Url.Action("GenerateWithAI", "SSS")',
+                    type: 'POST',
+                    success: function (response) {
+                        console.log('Response alındı:', response);
+                        $('#aiLoadingDiv').hide();
+
+                        if (response.success) {
+                            console.log('Response başarılı, data parse ediliyor...');
+                            try {
+                                var data = JSON.parse(response.data);
+                                console.log('Parse edilmiş data:', data);
+
+                                var html = '';
+                                $.each(data, function (index, item) {
+                                    html += '<tr>';
+                                    html += '<td><input type="checkbox" class="ai-checkbox" data-index="' + index + '"></td>';
+                                    html += '<td><strong>' + item.soruTR + '</strong><br><small class="text-muted">' + item.cevapTR + '</small></td>';
+                                    html += '<td><strong>' + item.soruEN + '</strong><br><small class="text-muted">' + item.cevapEN + '</small></td>';
+                                    html += '</tr>';
+                                });
+
+                                $('#aiResultTable').html(html);
+                                $('#aiResultDiv').show();
+                                $('#saveSelectedBtn').show();
+                                window.aiGeneratedData = data;
+
+                                console.log('Tablo oluşturuldu');
+                            } catch (e) {
+                                console.error('JSON parse hatası:', e);
+                                alert('Veri işlenirken hata oluştu: ' + e.message + '. Gelen veri: ' + response.data.substring(0, 200) + '...');
+                                $('#aiModal').modal('hide');
+                            }
+                        } else {
+                            console.error('Response başarısız:', response.message);
+                            alert('Hata: ' + response.message);
+                            $('#aiModal').modal('hide');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('AJAX Hatası!');
+                        console.error('XHR:', xhr);
+                        console.error('Status:', status);
+                        console.error('Error:', error);
+                        console.error('Response Text:', xhr.responseText);
+                        console.error('Status Code:', xhr.status);
+
+                        $('#aiLoadingDiv').hide();
+
+                        var errorMessage = 'AJAX Hatası!\n';
+                        errorMessage += 'Status: ' + status + '\n';
+                        errorMessage += 'HTTP Code: ' + xhr.status + '\n';
+                        errorMessage += 'Error: ' + error + '\n';
+                        errorMessage += 'Response: ' + xhr.responseText.substring(0, 100) + '...';
+
+                        alert(errorMessage);
+                        $('#aiModal').modal('hide');
+                    }
+                });
+            });
+
+            $('#saveSelectedBtn').click(function () {
+                console.log('Kaydet butonuna tıklandı');
+                var selectedItems = [];
+
+                $('.ai-checkbox:checked').each(function () {
+                    var index = $(this).data('index');                   
+                    var item = window.aiGeneratedData[index];
+                    selectedItems.push({
+                        soru: item.soruTR,
+                        cevap: item.cevapTR,
+                        soruEN: item.soruEN,
+                        cevapEN: item.cevapEN
+                    });
+                });
+
+                console.log('Seçili öğeler:', selectedItems);
+
+                if (selectedItems.length === 0) {
+                    alert('Lütfen en az bir soru seçin!');
+                    return;
+                }
+
+                $.ajax({
+                    url: '@Url.Action("SaveAIGenerated", "SSS")',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ items: selectedItems }),
+                    success: function (response) {
+                        console.log('Kayıt response:', response);
+                        if (response.success) {
+                            $('#aiModal').modal('hide');
+                            location.reload();
+                        } else {
+                            alert('Hata: ' + response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Kayıt hatası:', xhr, status, error);
+                        alert('Kayıt sırasında hata oluştu! Detay: ' + xhr.responseText);
+                    }
+                });
+            });
+
+           
+        });
+    </script>
+}

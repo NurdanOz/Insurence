@@ -1,0 +1,52 @@
+﻿@model Insurence.Models.DataModels.TblContact
+@{
+    ViewBag.Title = "Yeni İletişim Bilgisi Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Yeni İletişim Bilgisi Ekle</h4>
+                <p class="card-description">İletişim bilgilerini ekleyin</p>
+
+                @using (Html.BeginForm("Create", "Contact", FormMethod.Post, new { @class = "forms-sample" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Adress, "Adres", new { @class = "form-label" })
+                        @Html.TextAreaFor(m => m.Adress, new { @class = "form-control", rows = "3", placeholder = "Adres giriniz" })
+                        @Html.ValidationMessageFor(m => m.Adress, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, "E-posta", new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "ornek@email.com", type = "email" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.PhoneNumber, "Telefon Numarası", new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", placeholder = "0212 345 67 89" })
+                        @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-gradient-primary me-2">
+                            <i class="mdi mdi-content-save"></i> Kaydet
+                        </button>
+                        <a href="@Url.Action("Index", "Contact")" class="btn btn-light">
+                            <i class="mdi mdi-arrow-left"></i> İptal
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

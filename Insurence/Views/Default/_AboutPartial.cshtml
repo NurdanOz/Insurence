@@ -1,0 +1,49 @@
+﻿@model List<Insurence.Models.DataModels.TblAbout>
+@{
+    var isEnglish = Session["Language"] != null && Session["Language"].ToString() == "en";
+}
+<div class="container-fluid bg-light about pb-5">
+    <div class="container pb-5">
+        <div class="row g-5">
+            <div class="col-xl-6 wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="about-item-content bg-white rounded p-5 h-100">
+                    <h4 class="text-primary">@(isEnglish ? "About Our Company" : "Şirketimiz Hakkında")</h4>
+                    <p>
+                        @(isEnglish ? "With our wide and flexible insurance options, we secure the future of you and your loved ones. We are here with our experienced team to provide fast and transparent solutions tailored to your needs. Whether it's health, life, home or car insurance, we are with you for a secure future. Save money and stay safe. Together we offer solutions that will be with you in every moment with confidence for the future. With wide coverage options, fast processing and budget-friendly plans, we protect not only your today, but also your tomorrow. The name of the new generation service in insurance: Us." : "Geniş ve esnek sigorta seçeneklerimizle, sizin ve sevdiklerinizin geleceğini güvence altına alıyoruz. Deneyimli ekibimiz ile ihtiyaçlarınıza uygun hızlı ve şeffaf çözümler sunmak için buradayız. İster sağlık, hayat, konut ya da araç sigortası olsun güvenli bir gelecek için yanınızdayız. Hem tasarruf edin hem güvende olun. Geleceğe birlikte güvenle her anınızda yanınızda olacak çözümler sunuyoruz. Geniş teminat seçenekleri, hızlı işlem süreçleri ve bütçenize uygun planlarla, sadece bugününüzü değil, yarınınızı da koruyoruz. Sigortada yeni nesil hizmetin adı: Biz.")
+                    </p>
+                    <p class="text-dark"><i class="fa fa-check text-primary me-3"></i>@(isEnglish ? "Save money" : "Paradan tasarruf edin")</p>
+                    <p class="text-dark"><i class="fa fa-check text-primary me-3"></i>@(isEnglish ? "Production and trade are safe" : "Üretim ve ticaret güvende")</p>
+                    <p class="text-dark mb-4"><i class="fa fa-check text-primary me-3"></i>@(isEnglish ? "Flexible life insurance" : "Esnek hayat sigortası")</p>
+                    <a class="btn btn-primary rounded-pill py-3 px-5" href="#">
+                        @(isEnglish ? "More Information..." : "Daha Fazla Bilgi..")
+                    </a>
+                </div>
+            </div>
+            <div class="col-xl-6 wow fadeInRight" data-wow-delay="0.2s">
+                <div class="bg-white rounded p-5 h-100">
+                    <div class="row g-4 justify-content-center">
+                        <div class="col-12">
+                            <div class="rounded bg-light">
+                                <img src="~/LifeSure-1.0.0/img/about-1.png" class="img-fluid rounded w-100" alt="">
+                            </div>
+                        </div>
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-sm-6">
+                                <div class="counter-item bg-light rounded p-3 h-100">
+                                    <div class="counter-counting">
+                                        <span class="text-primary fs-2 fw-bold" data-toggle="counter-up">@item.Stats</span>
+                                        <span class="h1 fw-bold text-primary">+</span>
+                                    </div>
+                                    <h4 class="mb-0 text-dark">
+                                        @(isEnglish ? item.DescriptionEN : item.Description)
+                                    </h4>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

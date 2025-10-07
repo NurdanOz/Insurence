@@ -1,0 +1,87 @@
+﻿@model Insurence.Models.DataModels.TblEmploye
+
+@{
+    ViewBag.Title = "Yeni Ekip Üyesi Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title mb-0">Yeni Ekip Üyesi Ekle</h4>
+                    <a href="@Url.Action("Index", "Employee")" class="btn btn-gradient-dark btn-fw">
+                        <i class="mdi mdi-arrow-left"></i> Geri Dön
+                    </a>
+                </div>
+
+                @using (Html.BeginForm("Create", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        <label for="NameSurname">Ad Soyad *</label>
+                        @Html.TextBoxFor(m => m.NameSurname, new { @class = "form-control", placeholder = "Örn: Ahmet Yılmaz" })
+                        @Html.ValidationMessageFor(m => m.NameSurname, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Profession">Meslek/Ünvan *</label>
+                        @Html.TextBoxFor(m => m.Profession, new { @class = "form-control", placeholder = "Örn: Sigorta Danışmanı" })
+                        @Html.ValidationMessageFor(m => m.Profession, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PositionEn">Pozisyon (İngilizce)</label>
+                        @Html.TextBoxFor(m => m.PositionEn, new { @class = "form-control", placeholder = "Ex: Insurance Consultant" })
+                        @Html.ValidationMessageFor(m => m.PositionEn, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fotoğraf Yükle *</label>
+                        <div class="custom-file">
+                            <input type="file" name="ImageFile" id="ImageFile" class="custom-file-input" accept="image/*" onchange="previewImage(event)" />
+                            <label class="custom-file-label" for="ImageFile">Dosya Seçin...</label>
+                        </div>
+                        <small class="form-text text-muted">Sadece JPG, JPEG, PNG formatları kabul edilir.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <img id="imagePreview" src="#" alt="Önizleme" style="max-width: 200px; max-height: 200px; display: none; border-radius: 8px; margin-top: 10px;" />
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <button type="submit" class="btn btn-gradient-primary mr-2">
+                            <i class="mdi mdi-content-save"></i> Kaydet
+                        </button>
+                        <a href="@Url.Action("Index", "Employee")" class="btn btn-light">İptal</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        
+        $('.custom-file-input').on('change', function () {
+            var fileName = $(this).val().split('\\').pop();
+            $(this).next('.custom-file-label').html(fileName);
+        });
+
+        
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('imagePreview');
+                output.src = reader.result;
+                output.style.display = 'block';
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+}

@@ -1,0 +1,63 @@
+﻿@model List<Insurence.Models.DataModels.TblAbout>
+@{
+    ViewBag.Title = "Hakkımızda Yönetimi";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title mb-0">Hakkımızda Listesi</h4>
+                    <a href="@Url.Action("Create", "About")" class="btn btn-gradient-primary btn-fw">
+                        <i class="mdi mdi-plus"></i> Yeni Ekle
+                    </a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Açıklama (TR)</th>
+                                <th>İstatistik</th>
+                                <th>Açıklama (EN)</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Count > 0)
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.AboutId</td>
+                                        <td>@(item.Description?.Length > 50 ? item.Description.Substring(0, 50) + "..." : item.Description)</td>
+                                        <td><span class="badge badge-info">@item.Stats</span></td>
+                                        <td>@(item.DescriptionEN?.Length > 50 ? item.DescriptionEN.Substring(0, 50) + "..." : item.DescriptionEN)</td>
+                                        <td>
+                                            <a href="@Url.Action("Edit", "About", new { id = item.AboutId })" class="btn btn-gradient-success btn-sm btn-icon-text">
+                                                <i class="mdi mdi-pencil btn-icon-prepend"></i> Düzenle
+                                            </a>
+                                            <a href="@Url.Action("Delete", "About", new { id = item.AboutId })"
+                                               class="btn btn-gradient-danger btn-sm btn-icon-text"
+                                               onclick="return confirm('Silmek istediğinize emin misiniz?')">
+                                                <i class="mdi mdi-delete btn-icon-prepend"></i> Sil
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center">Henüz kayıt bulunmamaktadır.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

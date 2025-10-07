@@ -1,0 +1,136 @@
+﻿@{
+    var isEnglish = Session["Language"] != null && Session["Language"].ToString() == "en";
+}
+<div class="container-fluid topbar px-0 px-lg-4 bg-light py-2 d-none d-lg-block">
+    <div class="container">
+        <div class="row gx-0 align-items-center">
+            <div class="col-lg-8 text-center text-lg-start mb-lg-0">
+                <div class="d-flex flex-wrap">
+                    <div class="border-end border-primary pe-3">
+                        <a href="#" class="text-muted small">
+                            <i class="fas fa-map-marker-alt text-primary me-2"></i>@(isEnglish ? "Location" : "Lokasyon")
+                        </a>
+                    </div>
+                    <div class="ps-3">
+                        <a href="mailto:sigortacim@gmail.com" class="text-muted small">
+                            <i class="fas fa-envelope text-primary me-2"></i>sigortacim@gmail.com
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center text-lg-end">
+                <div class="d-flex justify-content-end">
+                    <div class="d-flex border-end border-primary pe-3">
+                        <a class="btn p-0 text-primary me-0" href="https://www.instagram.com/murattycedag/" target="_blank" title="Instagram'da Bizi Takip Edin">
+                            <i class="fab fa-instagram"></i>
+                            <span id="instagram-followers-top" style="font-size: 0.85em; margin-left: 3px;"></span>
+                        </a>
+                    </div>
+                    <div class="dropdown ms-3">
+                        <a href="#" class="dropdown-toggle text-dark" data-bs-toggle="dropdown">
+                            <small>
+                                <i class="fas fa-globe-europe text-primary me-2"></i>
+                                @(isEnglish ? "English" : "Türkçe")
+                            </small>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="@Url.Action("ChangeLanguage", "Language", new { lang = "tr" })" class="dropdown-item">Türkçe</a>
+                            <a href="@Url.Action("ChangeLanguage", "Language", new { lang = "en" })" class="dropdown-item">English</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.querySelectorAll('.dropdown-menu a').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            var lang = this.getAttribute('href').includes('lang=en') ? 'en' : 'tr';
+            localStorage.setItem('selectedLanguage', lang);
+            if (typeof updateHeroContent === 'function') {
+                updateHeroContent(lang);
+            }
+            if (typeof updateNavContent === 'function') {
+                updateNavContent(lang);
+            }
+            if (typeof updateFooterContent === 'function') {
+                updateFooterContent(lang);
+            }
+            if (typeof updateTeamContent === 'function') {
+                updateTeamContent(lang);
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var currentLang = '@(isEnglish ? "en" : "tr")';
+        localStorage.setItem('selectedLanguage', currentLang);
+        if (typeof updateHeroContent === 'function') {
+            updateHeroContent(currentLang);
+        }
+        if (typeof updateNavContent === 'function') {
+            updateNavContent(currentLang);
+        }
+        if (typeof updateFooterContent === 'function') {
+            updateFooterContent(currentLang);
+        }
+        if (typeof updateTeamContent === 'function') {
+            updateTeamContent(currentLang);
+        }
+
+        // Instagram takipçi sayısını çek
+        getInstagramFollowersTop();
+    });
+
+    // Sayıyı formatla (12344 -> 12.3K)
+    function formatNumberTop(num) {
+        if (num >= 1000000) {
+            return (num / 1000000).toFixed(1) + 'M';
+        } else if (num >= 1000) {
+            return (num / 1000).toFixed(1) + 'K';
+        }
+        return num.toString();
+    }
+
+    // Instagram takipçi sayısını çek
+    async function getInstagramFollowersTop() {
+        try {
+            const response = await fetch('/Instagram/GetFollowers');
+            const result = await response.json();
+
+            if (result.success) {
+                const data = JSON.parse(result.data);
+
+                console.log('API Response:', data);
+
+                // user_data.follower_count'u al
+                let followers = null;
+
+                if (data.user_data && data.user_data.follower_count) {
+                    followers = data.user_data.follower_count;
+                } else if (data.follower_count) {
+                    followers = data.follower_count;
+                } else if (data.followers) {
+                    followers = data.followers;
+                } else if (data.data && data.data.follower_count) {
+                    followers = data.data.follower_count;
+                }
+
+                if (followers !== null) {
+                    const formattedFollowers = formatNumberTop(followers);
+                    const followerElement = document.getElementById('instagram-followers-top');
+                    if (followerElement) {
+                        followerElement.textContent = `(${formattedFollowers})`;
+                    }
+                } else {
+                    console.error('Takipçi sayısı bulunamadı. Data yapısı:', data);
+                }
+            } else {
+                console.error('Hata:', result.message);
+            }
+        } catch (error) {
+            console.error('Instagram takipçi sayısı alınamadı:', error);
+        }
+    }
+</script>

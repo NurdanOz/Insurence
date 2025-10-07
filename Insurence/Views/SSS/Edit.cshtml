@@ -1,0 +1,59 @@
+﻿@model Insurence.Models.DataModels.TblSSS
+@{
+    ViewBag.Title = "SSS Düzenle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Soru Düzenle</h4>
+                <p class="card-description">Mevcut soru ve cevabı güncelleyin</p>
+
+                @using (Html.BeginForm("Edit", "SSS", FormMethod.Post, new { @class = "forms-sample" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.SssId)
+
+                    <div class="form-group">
+                        <label for="soru">Soru (Türkçe) *</label>
+                        @Html.TextBoxFor(m => m.soru, new { @class = "form-control", placeholder = "Örn: Sigorta sistemi nasıl çalışır?" })
+                        @Html.ValidationMessageFor(m => m.soru, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cevap">Cevap (Türkçe) *</label>
+                        @Html.TextAreaFor(m => m.cevap, new { @class = "form-control", rows = 4, placeholder = "Cevabı buraya yazın..." })
+                        @Html.ValidationMessageFor(m => m.cevap, "", new { @class = "text-danger" })
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="form-group">
+                        <label for="soruEN">Soru (İngilizce)</label>
+                        @Html.TextBoxFor(m => m.soruEN, new { @class = "form-control", placeholder = "Example: How does insurance system work?" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cevapEN">Cevap (İngilizce)</label>
+                        @Html.TextAreaFor(m => m.cevapEN, new { @class = "form-control", rows = 4, placeholder = "Write answer here..." })
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <button type="submit" class="btn btn-gradient-success btn-lg me-2">
+                            <i class="mdi mdi-check"></i> Güncelle
+                        </button>
+                        <a href="@Url.Action("Index", "SSS")" class="btn btn-light btn-lg">
+                            <i class="mdi mdi-close"></i> İptal
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

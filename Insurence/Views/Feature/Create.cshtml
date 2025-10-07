@@ -1,0 +1,77 @@
+﻿@model Insurence.Models.DataModels.TblFeature
+@{
+    ViewBag.Title = "Yeni Özellik Ekle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Yeni Özellik Ekle</h4>
+                <p class="card-description">Özellik bilgilerini ekleyin</p>
+
+                @using (Html.BeginForm("Create", "Feature", FormMethod.Post, new { @class = "forms-sample" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Title, "Başlık (Türkçe)", new { @class = "form-label" })
+                                @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Başlık giriniz" })
+                                @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.TitleEN, "Başlık (İngilizce)", new { @class = "form-label" })
+                                @Html.TextBoxFor(m => m.TitleEN, new { @class = "form-control", placeholder = "Title" })
+                                @Html.ValidationMessageFor(m => m.TitleEN, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Description, "Açıklama (Türkçe)", new { @class = "form-label" })
+                                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "4", placeholder = "Açıklama giriniz" })
+                                @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.DescriptionEN, "Açıklama (İngilizce)", new { @class = "form-label" })
+                                @Html.TextAreaFor(m => m.DescriptionEN, new { @class = "form-control", rows = "4", placeholder = "Description" })
+                                @Html.ValidationMessageFor(m => m.DescriptionEN, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Icon, "İkon Class", new { @class = "form-label" })
+                        @Html.TextBoxFor(m => m.Icon, new { @class = "form-control", placeholder = "mdi mdi-shield-check" })
+                        @Html.ValidationMessageFor(m => m.Icon, "", new { @class = "text-danger" })
+                        <small class="form-text text-muted">Örnek: mdi mdi-shield-check, fa fa-check, bi bi-star</small>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-gradient-primary me-2">
+                            <i class="mdi mdi-content-save"></i> Kaydet
+                        </button>
+                        <a href="@Url.Action("Index", "Feature")" class="btn btn-light">
+                            <i class="mdi mdi-arrow-left"></i> İptal
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

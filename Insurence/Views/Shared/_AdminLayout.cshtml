@@ -1,0 +1,207 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>@ViewData["Title"] - Admin Panel</title>
+
+    <link rel="stylesheet" href="~/corona-free-dark-bootstrap-admin-template-1.0.0/template/assets/vendors/mdi/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="~/corona-free-dark-bootstrap-admin-template-1.0.0/template/assets/vendors/css/vendor.bundle.base.css" />
+    <link rel="stylesheet" href="~/corona-free-dark-bootstrap-admin-template-1.0.0/template/assets/css/style.css" />
+
+    <style>
+        .sidebar .nav {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+            .sidebar .nav .nav-item {
+                padding: 0 !important;
+                margin: 0 !important;
+                width: 100%;
+            }
+
+                .sidebar .nav .nav-item .nav-link {
+                    padding: 1rem 0 1rem 1.25rem !important;
+                    margin: 0 !important;
+                    text-align: left !important;
+                    justify-content: flex-start !important;
+                    display: flex !important;
+                    align-items: center !important;
+                }
+
+                    .sidebar .nav .nav-item .nav-link .menu-icon {
+                        margin-right: 1rem !important;
+                        margin-left: 0 !important;
+                    }
+
+                    .sidebar .nav .nav-item .nav-link .menu-title {
+                        margin: 0 !important;
+                        padding: 0 !important;
+                    }
+
+        .sidebar-brand-wrapper {
+            padding-left: 1.25rem !important;
+            justify-content: flex-start !important;
+        }
+
+        .sidebar .nav .nav-item.profile {
+            padding: 1rem 0 1rem 1.25rem !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-scroller">
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+                <a class="sidebar-brand brand-logo" href="/Admin/Index" style="color: white; text-decoration: none; font-size: 1.5rem; font-weight: bold;">SİGORTACIM</a>
+                <a class="sidebar-brand brand-logo-mini" href="/Admin/Index">AP</a>
+            </div>
+
+            <ul class="nav">
+                <li class="nav-item profile">
+                    <div class="profile-desc">
+                        <div class="profile-pic">
+                            <div class="count-indicator">
+                                <img class="img-xs rounded-circle" src="~/corona-free-dark-bootstrap-admin-template-1.0.0/template/assets/images/faces/face12.jpg" alt="profile">
+                                <span class="count bg-success"></span>
+                            </div>
+                            <div class="profile-name">
+                                <h5 class="mb-0 font-weight-normal">Ahmet Gün</h5>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="/Admin/Index">
+                        <i class="mdi mdi-information-outline menu-icon"></i>
+                        <span class="menu-title">DASHBOARD</span>
+                    </a>
+                </li>
+
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="/Default/Index">
+                        <i class="mdi mdi-home menu-icon"></i>
+                        <span class="menu-title">ANASAYFA</span>
+                    </a>
+                </li>
+
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="/About/Index">
+                        <i class="mdi mdi-information-outline menu-icon"></i>
+                        <span class="menu-title">HAKKIMIZDA</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="/Service/Index">
+                        <i class="mdi mdi-briefcase-outline menu-icon"></i>
+                        <span class="menu-title">HİZMETLER(AI)</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="/SSS/Index">
+                        <i class="mdi mdi-help-circle-outline menu-icon"></i>
+                        <span class="menu-title">SSS(AI)</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="/Feature/Index">
+                        <i class="mdi mdi-star-outline menu-icon"></i>
+                        <span class="menu-title">ÖZELLİKLER</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="/Employee/Index">
+                        <i class="mdi mdi-account-group menu-icon"></i>
+                        <span class="menu-title">EKİBİMİZ</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="/Testimonial/Index">
+                        <i class="mdi mdi-thumb-up-outline menu-icon"></i>
+                        <span class="menu-title">REFERANSLAR</span>
+                    </a>
+                </li>
+                <li class="nav-item menu-items">
+                    <a class="nav-link" href="/Contact/Index">
+                        <i class="mdi mdi-email-outline menu-icon"></i>
+                        <span class="menu-title">İLETİŞİM</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="container-fluid page-body-wrapper">
+            <nav class="navbar p-0 fixed-top d-flex flex-row">
+                <div class="navbar-menu-wrapper d-flex align-items-stretch w-100 justify-content-end">
+                    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+                        <span class="mdi mdi-menu"></span>
+                    </button>
+
+                    <ul class="navbar-nav navbar-nav-right">
+                        <li class="nav-item nav-profile dropdown">
+                            <a class="nav-link" href="#" data-toggle="dropdown" aria-expanded="false">
+                                <div class="nav-profile-img">
+                                    <img src="~/corona-free-dark-bootstrap-admin-template-1.0.0/template/assets/images/faces/face12.jpg" alt="profile" />
+                                </div>
+                                <div class="nav-profile-text">
+                                    <p class="mb-1 text-white">Barış Umutlu</p>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list">
+                                <a class="dropdown-item preview-item" href="/Account/Profile">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-dark rounded-circle">
+                                            <i class="mdi mdi-settings text-success"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <p class="preview-subject mb-1">Ayarlar</p>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item preview-item" href="/Account/Logout">
+                                    <div class="preview-thumbnail">
+                                        <div class="preview-icon bg-dark rounded-circle">
+                                            <i class="mdi mdi-logout text-danger"></i>
+                                        </div>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <p class="preview-subject mb-1">Çıkış Yap</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+                        <span class="mdi mdi-format-line-spacing"></span>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    @RenderBody()
+                </div>
+
+                <footer class="footer">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Admin Panel © 2024</span>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/corona-free-dark-bootstrap-admin-template-1.0.0/template/assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="~/corona-free-dark-bootstrap-admin-template-1.0.0/template/assets/js/off-canvas.js"></script>
+    <script src="~/corona-free-dark-bootstrap-admin-template-1.0.0/template/assets/js/hoverable-collapse.js"></script>
+    <script src="~/corona-free-dark-bootstrap-admin-template-1.0.0/template/assets/js/misc.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

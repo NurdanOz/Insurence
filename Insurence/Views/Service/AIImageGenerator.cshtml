@@ -1,0 +1,178 @@
+﻿@{
+    ViewBag.Title = "AI Görsel Oluşturucu";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">
+                    <i class="mdi mdi-robot text-primary"></i> AI Görsel Oluşturucu
+                </h4>
+                <p class="card-description">Hugging Face AI kullanarak görsel oluşturun</p>
+
+                <div class="alert alert-info">
+                    <strong><i class="mdi mdi-information"></i> Bilgi:</strong>
+                    <ul class="mb-0 mt-2">
+                        <li>Oluşturulacak görseli İngilizce olarak tanımlayın</li>
+                        <li>Görsel oluşturulduktan sonra indirin</li>
+                        <li>İndirilen görseli <a href="https://imgur.com/upload" target="_blank" class="alert-link">Imgur</a> veya <a href="https://imgbb.com/" target="_blank" class="alert-link">ImgBB</a> gibi sitelere yükleyin</li>
+                        <li>URL'i kopyalayıp Hizmet Ekle/Düzenle sayfasında kullanın</li>
+                    </ul>
+                </div>
+
+                <form id="aiGeneratorForm">
+                    <div class="form-group">
+                        <label for="prompt" class="form-label">Görsel Açıklaması (Prompt)</label>
+                        <textarea class="form-control" id="prompt" rows="4" placeholder="Örnek: A family with car and house, insurance concept, professional illustration, modern style"></textarea>
+                        <small class="form-text text-muted">
+                            <strong>Örnekler:</strong><br>
+                            • "Life insurance concept with family, modern illustration, bright colors"<br>
+                            • "Car insurance illustration with vehicle and shield, professional style"<br>
+                            • "Health insurance concept with doctor and patient, clean design"<br>
+                            • "Home insurance with house under umbrella, colorful illustration"
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="button" id="generateBtn" class="btn btn-gradient-primary btn-lg">
+                            <i class="mdi mdi-creation"></i> Görsel Oluştur
+                        </button>
+                        <a href="/Service/Index" class="btn btn-light btn-lg">
+                            <i class="mdi mdi-arrow-left"></i> Geri Dön
+                        </a>
+                    </div>
+                </form>
+
+                <div id="loadingArea" style="display: none;" class="text-center my-4">
+                    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                        <span class="sr-only">Yükleniyor...</span>
+                    </div>
+                    <p class="mt-3">Görsel oluşturuluyor, lütfen bekleyin... (30-60 saniye)</p>
+                </div>
+
+                <div id="resultArea" style="display: none;" class="mt-4">
+                    <div class="alert alert-success">
+                        <strong><i class="mdi mdi-check-circle"></i> Başarılı!</strong> Görseliniz oluşturuldu.
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Oluşturulan Görsel</h5>
+                            <img id="generatedImage" src="" alt="Generated" style="max-width: 100%; max-height: 500px; border-radius: 8px; margin: 20px 0;">
+
+                            <div class="mt-3">
+                                <button id="downloadBtn" class="btn btn-gradient-success btn-lg me-2">
+                                    <i class="mdi mdi-download"></i> Görseli İndir
+                                </button>
+                                <button id="newGenerateBtn" class="btn btn-gradient-info btn-lg">
+                                    <i class="mdi mdi-refresh"></i> Yeni Görsel Oluştur
+                                </button>
+                            </div>
+
+                            <div class="alert alert-warning mt-4">
+                                <strong>Sonraki Adım:</strong><br>
+                                1. Görseli indirin<br>
+                                2. <a href="https://imgur.com/upload" target="_blank" class="alert-link">Imgur</a> veya <a href="https://imgbb.com/" target="_blank" class="alert-link">ImgBB</a>'ye yükleyin<br>
+                                3. Verilen URL'i kopyalayın<br>
+                                4. Service Ekle/Düzenle sayfasında "Görsel URL" alanına yapıştırın
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="errorArea" style="display: none;" class="mt-4">
+                    <div class="alert alert-danger">
+                        <strong><i class="mdi mdi-alert-circle"></i> Hata!</strong>
+                        <p id="errorMessage" class="mb-0 mt-2"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#generateBtn').click(function () {
+                var prompt = $('#prompt').val().trim();
+
+                // Validasyon
+                if (!prompt) {
+                    alert('Lütfen görsel açıklaması giriniz!');
+                    return;
+                }
+
+                // Alanları temizle
+                $('#resultArea').hide();
+                $('#errorArea').hide();
+                $('#loadingArea').show();
+
+                // Backend'e istek gönder
+                $.ajax({
+                    url: '/Service/GenerateAIImage',
+                    type: 'POST',
+                    data: { prompt: prompt },
+                    xhrFields: {
+                        responseType: 'blob'
+                    },
+                    success: function (blob) {
+                        $('#loadingArea').hide();
+
+                        // Blob'u URL'e çevir
+                        var imageUrl = URL.createObjectURL(blob);
+                        $('#generatedImage').attr('src', imageUrl);
+
+                        // İndirme butonunu ayarla
+                        $('#downloadBtn').off('click').on('click', function () {
+                            var link = document.createElement('a');
+                            link.href = imageUrl;
+                            link.download = 'ai-generated-' + Date.now() + '.png';
+                            link.click();
+                        });
+
+                        $('#resultArea').show();
+                    },
+                    error: function (xhr, status, error) {
+                        $('#loadingArea').hide();
+
+                        var errorMsg = 'Bir hata oluştu: ' + error;
+
+                        if (xhr.status === 401) {
+                            errorMsg = 'API Key geçersiz! Lütfen yöneticinize başvurun.';
+                        } else if (xhr.status === 503) {
+                            errorMsg = 'Model yükleniyor. Lütfen 30 saniye bekleyip tekrar deneyin.';
+                        } else if (xhr.status === 429) {
+                            errorMsg = 'Çok fazla istek gönderildi. Lütfen birkaç dakika bekleyin.';
+                        }
+
+                        // Eğer JSON hata mesajı dönerse
+                        try {
+                            var reader = new FileReader();
+                            reader.onload = function () {
+                                var response = JSON.parse(reader.result);
+                                if (response.error) {
+                                    errorMsg = response.error;
+                                }
+                                $('#errorMessage').text(errorMsg);
+                                $('#errorArea').show();
+                            };
+                            reader.readAsText(xhr.response);
+                        } catch (e) {
+                            $('#errorMessage').text(errorMsg);
+                            $('#errorArea').show();
+                        }
+                    }
+                });
+            });
+
+            $('#newGenerateBtn').click(function () {
+                $('#resultArea').hide();
+                $('#errorArea').hide();
+                $('html, body').animate({ scrollTop: 0 }, 'fast');
+            });
+        });
+    </script>
+}

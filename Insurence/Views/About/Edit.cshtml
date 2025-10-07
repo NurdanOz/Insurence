@@ -1,0 +1,57 @@
+﻿@model Insurence.Models.DataModels.TblAbout
+@{
+    ViewBag.Title = "Hakkımızda Düzenle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title mb-0">Hakkımızda Kaydını Düzenle</h4>
+                    <a href="@Url.Action("Index", "About")" class="btn btn-gradient-dark btn-fw">
+                        <i class="mdi mdi-arrow-left"></i> Geri Dön
+                    </a>
+                </div>
+
+                @using (Html.BeginForm("Edit", "About", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(m => m.AboutId)
+
+                    <div class="form-group">
+                        <label for="Description">Açıklama (Türkçe) *</label>
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "4", placeholder = "Türkçe açıklama giriniz..." })
+                        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Stats">İstatistik Değeri *</label>
+                        @Html.TextBoxFor(m => m.Stats, new { @class = "form-control", type = "number", placeholder = "Örn: 150" })
+                        @Html.ValidationMessageFor(m => m.Stats, "", new { @class = "text-danger" })
+                        <small class="form-text text-muted">Bu sayı kartlarda gösterilecek istatistik değeridir.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="DescriptionEN">Açıklama (İngilizce)</label>
+                        @Html.TextAreaFor(m => m.DescriptionEN, new { @class = "form-control", rows = "4", placeholder = "Enter English description..." })
+                        @Html.ValidationMessageFor(m => m.DescriptionEN, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <button type="submit" class="btn btn-gradient-success mr-2">
+                            <i class="mdi mdi-check"></i> Güncelle
+                        </button>
+                        <a href="@Url.Action("Index", "About")" class="btn btn-light">İptal</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
